@@ -1,3 +1,6 @@
+server:
+  port: 8080                                     # 端口号
+
 spring:
   profiles:
     active: dev  # 指明要使用的配置文件
@@ -16,10 +19,6 @@ spring:
 
 #    spring.config.name=自定义的配置文件名称
 #    spring.config.location=配置文件位置（可以是classpath或者有效url)
-
-server:
-  port: 8080                                     # 端口号
-
 
 #  mybatis 配置
 #  mybatis.config：mybatis-config.xml配置文件的路径
