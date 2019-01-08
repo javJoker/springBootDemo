@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev  # 指明要使用的配置文件
+  ## Freemarker 配置
+  freemarker:
+    template-loader-path: classpath:/templates/  # 逗号分隔的模板路径列表
+    cache: false                                 # 启用模板缓存
+    charset: utf-8                               # 模板编码
+    check-template-location: true                # 检查模板位置是否存在
+    content-type: text/html                      # Content-Type值
+#    expose-request-attributes: true             # 设置在与模板合并之前是否应将所有请求属性添加到模型中。
+#    expose-session-attributes: true             # 设置在与模板合并之前是否应将所有HttpSession属性添加到模型中。
+#    request-context-attribute: request          # 所有视图的RequestContext属性的名称。
+    suffix: .ftl                                 # 后缀名
+#    prefix:                                     # 前缀名
+
+#    spring.config.name=自定义的配置文件名称
+#    spring.config.location=配置文件位置（可以是classpath或者有效url)
+
+server:
+  port: 8080                                     # 端口号
+
+
+#  mybatis 配置
+#  mybatis.config：mybatis-config.xml配置文件的路径
+#  mybatis.typeHandlersPackage：扫描typeHandlers的包
+#  mybatis.checkConfigLocation：检查配置文件是否存在
+#  mybatis.executorType：设置执行模式（SIMPLE, REUSE, BATCH），默认为SIMPLE
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.spring.demo.model
