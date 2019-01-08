@@ -27,5 +27,5 @@ server:
 #  mybatis.checkConfigLocation：检查配置文件是否存在
 #  mybatis.executorType：设置执行模式（SIMPLE, REUSE, BATCH），默认为SIMPLE
 mybatis:
-  mapper-locations: classpath:mapping/*.xml
+  mapper-locations: classpath:mapping/**/*.xml
   type-aliases-package: com.spring.demo.model

@@ -1,7 +1,8 @@
-package com.spring.demo.service;
+package com.spring.demo.service.user.impl;
 
-import com.spring.demo.dao.UserMapper;
-import com.spring.demo.model.User;
+import com.spring.demo.dao.user.IUserDao;
+import com.spring.demo.model.user.User;
+import com.spring.demo.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private IUserDao userDao;
 
     @Override
     public User getUser() throws Exception {
-        return userMapper.selectByPrimaryKey("1");
+        return userDao.selectByPrimaryKey("1");
     }
 }

@@ -1,6 +1,6 @@
-package com.spring.demo.service;
+package com.spring.demo.service.user;
 
-import com.spring.demo.model.User;
+import com.spring.demo.model.user.User;
 
 public interface IUserService {
 

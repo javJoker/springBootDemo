@@ -1,4 +1,4 @@
-package com.spring.demo.model;
+package com.spring.demo.model.user;
 
 import java.util.Date;
 
