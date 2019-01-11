@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.spring.demo.constant.BaseConstant.ERROR;
-import static com.spring.demo.constant.BaseConstant.NO_DEL_FLAG;
+import static com.spring.demo.constant.BaseConstant.*;
 
 @RestController
 public class LoginController {
@@ -32,9 +31,9 @@ public class LoginController {
                 returnVo = new ReturnVo<>(ERROR, "登录名、密码不能为空！");
             }else {
                 User userByUserNo = userService.getUserByUserNo(user.getUserNo());
-                if (null != user){
-                    if (password == userByUserNo.getPassword()){
-                        returnVo = new ReturnVo<>(ERROR, "登录成功！", userByUserNo, null);
+                if (null != userByUserNo){
+                    if (password.equals(userByUserNo.getPassword())){
+                        returnVo = new ReturnVo<>(SUCCESS, "登录成功！", userByUserNo, null);
                     }else {
                         returnVo = new ReturnVo<>(ERROR, "密码错误！");
                     }
