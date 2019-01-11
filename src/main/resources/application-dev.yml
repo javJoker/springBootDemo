@@ -59,5 +59,3 @@ spring:
         stat:
           slow-sql-millis: 5000
           merge-sql: true
-
-

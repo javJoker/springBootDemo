@@ -6,13 +6,26 @@ spring:
     active: dev  # 指明要使用的配置文件
   ## Freemarker 配置
   freemarker:
-    template-loader-path: classpath:/templates/  # 逗号分隔的模板路径列表
-    cache: false                                 # 启用模板缓存
-    charset: utf-8                               # 模板编码
-    check-template-location: true                # 检查模板位置是否存在
-    content-type: text/html                      # Content-Type值
-#    expose-request-attributes: true             # 设置在与模板合并之前是否应将所有请求属性添加到模型中。
-#    expose-session-attributes: true             # 设置在与模板合并之前是否应将所有HttpSession属性添加到模型中。
+    # 设定模板的加载路径，多个以逗号分隔，默认: ["classpath:/templates/"]
+    template-loader-path: classpath:/templates/
+    # 启用模板缓存
+    cache: false
+    # 模板编码
+    charset: utf-8
+    # 检查模板位置是否存在
+    check-template-location: true
+    # Content-Type值
+    content-type: text/html
+    # 设定所有request的属性在merge到模板的时候，是否要都添加到model中.
+    expose-request-attributes: false
+    # 设定所有HttpSession的属性在merge到模板的时候，是否要都添加到model中.
+    expose-session-attributes: false
+    # 设定是否以springMacroRequestContext的形式暴露RequestContext给Spring’s macro library使用
+    expose-spring-macro-helpers: false
+    # 指定HttpServletRequest的属性是否可以覆盖controller的model的同名项
+    allow-request-override: false
+    # 设定所有HttpSession的属性在merge到模板的时候，是否要都添加到model中
+    allow-session-override: false
 #    request-context-attribute: request          # 所有视图的RequestContext属性的名称。
     suffix: .ftl                                 # 后缀名
 #    prefix:                                     # 前缀名
@@ -27,4 +40,5 @@ spring:
 #  mybatis.executorType：设置执行模式（SIMPLE, REUSE, BATCH），默认为SIMPLE
 mybatis:
   mapper-locations: classpath:mapping/**/*.xml
-  type-aliases-package: com.spring.demo.model
+  config-location: classpath:mybatis-config.xml
+  check-config-location: true
