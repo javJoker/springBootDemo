@@ -1,8 +1,11 @@
 package com.spring.demo.controller;
 
+import com.spring.demo.utils.LogUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+;
 
 @Controller
 public class IndexController {
@@ -11,6 +14,7 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(){
+        LogUtil.info(LOG, "首页跳转");
         return "/index";
     }
 }

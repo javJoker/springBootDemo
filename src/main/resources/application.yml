@@ -1,5 +1,7 @@
 server:
   port: 8080                                     # 端口号
+  tomcat:
+    uri-encoding: UTF-8
 
 spring:
   profiles:
@@ -29,6 +31,12 @@ spring:
 #    request-context-attribute: request          # 所有视图的RequestContext属性的名称。
     suffix: .ftl                                 # 后缀名
 #    prefix:                                     # 前缀名
+  ## 字符集编码设置
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
 
 #    spring.config.name=自定义的配置文件名称
 #    spring.config.location=配置文件位置（可以是classpath或者有效url)

@@ -24,4 +24,5 @@ public abstract class BaseConstant {
      * 删除标识（未删除）
      */
     public static final Integer NO_DEL_FLAG = 1;
+
 }
