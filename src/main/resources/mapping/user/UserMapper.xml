@@ -73,14 +73,32 @@
   </delete>
 
   <insert id="insert" parameterType="com.spring.demo.model.user.User">
-    insert into tbl_user (id, user_no, nick_name, 
-      password, real_name, creator, 
-      create_time, updator, update_time, 
-      del_flag)
-    values (#{id,jdbcType=VARCHAR}, #{userNo,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updator,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{delFlag,jdbcType=INTEGER})
+    insert into tbl_user
+      (
+       id,
+       user_no,
+       nick_name,
+       password,
+       real_name,
+       creator,
+       create_time,
+       updator,
+       update_time,
+       del_flag
+       )
+    values
+     (
+      #{id,jdbcType=VARCHAR},
+      #{userNo,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR},
+      #{realName,jdbcType=VARCHAR},
+      #{creator,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{delFlag,jdbcType=INTEGER}
+      )
   </insert>
 
   <insert id="insertSelective" parameterType="com.spring.demo.model.user.User">

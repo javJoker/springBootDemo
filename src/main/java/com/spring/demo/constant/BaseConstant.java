@@ -25,4 +25,10 @@ public abstract class BaseConstant {
      */
     public static final Integer NO_DEL_FLAG = 1;
 
+    /**
+     * 系统的RedisKEY格式化模板.
+     * Redis的KEY统一采用如下格式生成：{系统名}-{业务模块名}-{业务ID}, 以免多系统复用Redis的时候KEY重复。
+     */
+    public static final String REDIS_KEY_FORMAT = "Demo:{0}:{1}";
+
 }

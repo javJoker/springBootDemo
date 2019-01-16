@@ -13,4 +13,11 @@ public interface IUserService {
      * @throws Exception
      */
     public User getUserByUserNo(String userNo) throws Exception;
+
+    /**
+     * 用户注册
+     * @param user
+     * @throws Exception
+     */
+    public int setUser(User user) throws Exception;
 }
