@@ -4,7 +4,8 @@ import com.spring.demo.constant.RedisConstant;
 import com.spring.demo.model.user.User;
 import com.spring.demo.service.common.IRedisService;
 import com.spring.demo.service.user.IUserService;
-import com.spring.demo.utils.FastJsonUtils;
+import com.spring.demo.utils.CtokenUtil;
+import com.spring.demo.utils.FastJsonUtil;
 import com.spring.demo.utils.LogUtil;
 import com.spring.demo.utils.RedisUtil;
 import com.spring.demo.vo.ReturnVo;
@@ -14,10 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import static com.spring.demo.constant.BaseConstant.*;
 
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/demo/login")
 public class LoginController {
 
     private Logger LOG =  Logger.getLogger(LoginController.class);
@@ -34,9 +38,10 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/doLogin")
-    public String doLogin(User user){
+    public String doLogin(HttpServletRequest request, HttpServletResponse response, User user){
         ReturnVo<User> returnVo = new ReturnVo<>(ERROR, "登录失败！");
         try {
+
 //            user.setDelFlag(NO_DEL_FLAG);
             String password = user.getPassword();
             String userNo = user.getUserNo();
@@ -49,7 +54,8 @@ public class LoginController {
                     if (password.equals(userByUserNo.getPassword())){
                         LogUtil.info(LOG,"登录名、密码不能为空，userNo:{0}", userNo);
                         returnVo = new ReturnVo<>(SUCCESS, "登录成功！", userByUserNo, null);
-                        redisService.set( RedisUtil.formatRedisKey( RedisConstant.SESSION, userNo ), userByUserNo );
+                        String ctoken = CtokenUtil.sendCtoken( request, response );
+                        redisService.set( RedisUtil.formatRedisKey( RedisConstant.SESSION, ctoken ), userByUserNo );
                     }else {
                         LogUtil.info(LOG,"密码错误，userNo:{0}", userNo);
                         returnVo = new ReturnVo<>(ERROR, "密码错误！");
@@ -62,7 +68,7 @@ public class LoginController {
         } catch (Exception e) {
             LogUtil.error(LOG, e, "登录失败，userNo:{0}", user.getUserNo());
         }
-        return FastJsonUtils.convertObjectToJSON(returnVo);
+        return FastJsonUtil.convertObjectToJSON(returnVo);
     }
 
     /**

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * 用户接口实现类
+ */
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -16,8 +19,8 @@ public class UserServiceImpl implements IUserService {
     private IUserDao userDao;
 
     @Override
-    public User getUser() throws Exception {
-        return userDao.getUserById("1");
+    public User getUserById(String id) throws Exception {
+        return userDao.getUserById(id);
     }
 
     @Override

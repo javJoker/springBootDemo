@@ -1,5 +1,7 @@
 package com.spring.demo.service.common;
 
+import org.springframework.data.redis.connection.DataType;
+
 public interface IRedisService {
 
     /**
@@ -10,4 +12,28 @@ public interface IRedisService {
      * @return
      */
     public <T> Boolean set(String key, T value);
+
+    /**
+     * 获取redis缓存
+     * @param key
+     * @return
+     */
+    Object get(String key);
+
+    /**
+     * 获取redis缓存
+     *
+     * @param key
+     * @param tClazz
+     * @param <T>
+     * @return
+     */
+    <T> T get(String key, Class<T> tClazz);
+
+    /**
+     * 获取对应的key在redis中的存取类型
+     * @param key
+     * @return
+     */
+    DataType getDataType(String key);
 }

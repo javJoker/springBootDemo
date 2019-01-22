@@ -4,6 +4,7 @@ import com.spring.demo.service.common.IRedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,56 @@ public class IRedisServiceImpl implements IRedisService {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 获取redis缓存
+     * @param key
+     * @return
+     */
+    @Override
+    public Object get(String key) {
+        Object value = null;
+        DataType dataType = getDataType(key);
+        switch (dataType) {
+            case LIST:
+                value = listOperations.rightPop(key);
+                break;
+            case HASH:
+                value = hashOperations.entries(key);
+                break;
+            case STRING:
+                value = valueOperations.get(key);
+                break;
+            default:
+                break;
+        }
+        return value;
+    }
+
+    /**
+     * 获取redis缓存
+     * @param key
+     * @param tClazz
+     * @param <T>
+     * @return
+     */
+    @Override
+    public <T> T get(String key, Class<T> tClazz) {
+        return (T)get(key);
+    }
+
+    /**
+     * 获取对应的key在redis中的存取类型
+     * @param key
+     * @return
+     */
+    @Override
+    public DataType getDataType(String key) {
+        DataType dataType = null;
+        if(StringUtils.isNotBlank(key)){
+            dataType = redisTemplate.type(key);
+        }
+        return dataType;
     }
 }

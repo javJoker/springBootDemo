@@ -37,6 +37,10 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on_save
 
 #    spring.config.name=自定义的配置文件名称
 #    spring.config.location=配置文件位置（可以是classpath或者有效url)

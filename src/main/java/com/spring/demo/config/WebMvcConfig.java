@@ -1,5 +1,6 @@
 package com.spring.demo.config;
 
+import com.spring.demo.interceptor.CtokenInterceptor;
 import com.spring.demo.interceptor.TraceIdInterceptor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
 
-        /**TraceId设置*/
+        /**
+         * TraceId设置
+         */
         registry.addInterceptor(new TraceIdInterceptor());
+        /**
+         * Ctoken验证验证(未起作用)
+         */
+        registry.addInterceptor(new CtokenInterceptor() );
     }
 }
