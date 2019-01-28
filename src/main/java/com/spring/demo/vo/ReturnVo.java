@@ -22,11 +22,6 @@ public class ReturnVo<T> implements Serializable {
 	 */
 	private T data;
 
-	/**
-	 * 返回的list对象
-	 */
-	private List<T> datas;
-	
 	public ReturnVo() {
 		super();
 	}
@@ -42,7 +37,6 @@ public class ReturnVo<T> implements Serializable {
 		this.code = code;
 		this.msg = msg;
 		this.data = data;
-		this.datas = datas;
 	}
 
 	public Integer getCode() {
@@ -69,11 +63,4 @@ public class ReturnVo<T> implements Serializable {
 		this.data = data;
 	}
 
-	public List<T> getDatas() {
-		return datas;
-	}
-
-	public void setDatas(List<T> datas) {
-		this.datas = datas;
-	}
 }

@@ -52,6 +52,15 @@
     </if>
   </sql>
 
+  <select id="getAllByUser" parameterType="com.spring.demo.model.user.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user
+    <where>
+      <include refid="where" />
+    </where>
+  </select>
+
   <select id="getUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

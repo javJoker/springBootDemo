@@ -87,9 +87,10 @@ public class LoginController {
             }
             user.setDelFlag(NO_DEL_FLAG);
             userService.setUser(user);
+            returnVo = new ReturnVo<>(ERROR, "注册成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.error(LOG, e, "注册失败，userNo:{0}", user.getUserNo());
         }
-        return null;
+        return FastJsonUtil.convertObjectToJSON(returnVo);
     }
 }
