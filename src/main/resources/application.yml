@@ -38,6 +38,9 @@ spring:
       charset: UTF-8
       enabled: true
   # spring security 配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 #  security:
 #    user:
 #      name: user
@@ -59,3 +62,4 @@ mybatis:
   mapper-locations: classpath:mapping/**/*.xml
   config-location: classpath:mybatis-config.xml
   check-config-location: true
+

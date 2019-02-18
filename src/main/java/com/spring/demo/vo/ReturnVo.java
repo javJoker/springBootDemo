@@ -1,11 +1,8 @@
 package com.spring.demo.vo;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class ReturnVo<T> implements Serializable {
-
-	private static final long serialVersionUID = -5580228202640516960L;
+public class ReturnVo implements Serializable {
 
 	/**
 	 * 响应编码
@@ -20,7 +17,8 @@ public class ReturnVo<T> implements Serializable {
 	/**
 	 * 返回对象
 	 */
-	private T data;
+	private Object data;
+
 
 	public ReturnVo() {
 		super();
@@ -32,7 +30,7 @@ public class ReturnVo<T> implements Serializable {
 		this.msg = msg;
 	}
 
-	public ReturnVo(Integer code, String msg, T data, List<T> datas) {
+	public ReturnVo(Integer code, String msg, Object data) {
 		super();
 		this.code = code;
 		this.msg = msg;
@@ -55,11 +53,11 @@ public class ReturnVo<T> implements Serializable {
 		this.msg = msg;
 	}
 
-	public T getData() {
+	public Object getData() {
 		return data;
 	}
 
-	public void setData(T data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 

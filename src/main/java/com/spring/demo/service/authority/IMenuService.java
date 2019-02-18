@@ -14,12 +14,12 @@ public interface IMenuService {
      * 根据用户来查询菜单
      * @return
      */
-    public List<Menu> getAllByUser(User user) throws Exception;
+    List<Menu> getAllByUser(User user) throws Exception;
 
     /**
      * 查询菜单
      * @return
      * @throws Exception
      */
-    public List<Menu> getAll() throws Exception;
+    List<Menu> getAll() throws Exception;
 }

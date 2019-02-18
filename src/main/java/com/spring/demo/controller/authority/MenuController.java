@@ -1,13 +1,9 @@
 package com.spring.demo.controller.authority;
 
-import com.spring.demo.constant.RedisConstant;
 import com.spring.demo.model.authority.Menu;
-import com.spring.demo.model.user.User;
 import com.spring.demo.service.authority.IMenuService;
 import com.spring.demo.service.common.IRedisService;
-import com.spring.demo.utils.FastJsonUtil;
 import com.spring.demo.utils.LogUtil;
-import com.spring.demo.utils.RedisUtil;
 import com.spring.demo.vo.ReturnVo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +28,18 @@ public class MenuController {
     private IMenuService menuService;
 
     @RequestMapping("/ajaxList")
-    public String ajaxList(String sessionId){
-        ReturnVo<Menu> returnVo = new ReturnVo<>(ERROR, "查询失败！");
+    public Object ajaxList(String sessionId){
+        ReturnVo returnVo = new ReturnVo(ERROR, "查询失败！");
         try {
             List<Menu> menuList = menuService.getAll();
             // 根据sessionId获取用户信息
-            User user = redisService.get( RedisUtil.formatRedisKey( RedisConstant.SESSION, sessionId ), User.class );
-            returnVo = new ReturnVo<>(SUCCESS, "查询成功！");
+//            User user = redisService.get( RedisUtil.formatRedisKey( RedisConstant.SESSION, sessionId ), User.class );
+            returnVo = new ReturnVo(SUCCESS, "查询成功！",menuList);
         } catch (Exception e) {
             LogUtil.error(LOG, e, "查询失败，userNo:{0}");
         }
-        return  FastJsonUtil.convertObjectToJSON(returnVo);
+//        return  FastJsonUtil.convertObjectToJSON(returnVo);
+        return  returnVo;
     }
 
 }
