@@ -9,7 +9,7 @@
     <result column="pid" jdbcType="VARCHAR" property="pid" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="isLeaf" jdbcType="INTEGER" property="isleaf" />
+    <result column="isLeaf" jdbcType="INTEGER" property="isLeaf" />
     <result column="creator" jdbcType="VARCHAR" property="creator" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="updator" jdbcType="VARCHAR" property="updator" />
@@ -33,10 +33,55 @@
     del_flag
   </sql>
 
-  <select id="getAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <sql id="Base_Where">
+    <if test="id != null and id != ''">
+      id = #{id,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null and name != ''">
+      AND name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="sn != null and sn != ''">
+      AND sn = #{sn,jdbcType=VARCHAR}
+    </if>
+    <if test="url != null and url != ''">
+      AND url = #{url,jdbcType=VARCHAR}
+    </if>
+    <if test="pid != null">
+      pid = #{pid,jdbcType=VARCHAR}
+    </if>
+    <if test="seq != null">
+      AND seq = #{seq,jdbcType=INTEGER}
+    </if>
+    <if test="status != null">
+      AND status = #{status,jdbcType=INTEGER},
+    </if>
+    <if test="isLeaf != null">
+      isLeaf = #{isLeaf,jdbcType=INTEGER}
+    </if>
+    <if test="creator != null and creator != ''">
+      AND creator = #{creator,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null and createTime != ''">
+      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updator != null and updator != ''">
+      AND updator = #{updator,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime != null and updateTime != ''">
+      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="delFlag != null">
+      AND del_flag = #{delFlag,jdbcType=INTEGER}
+    </if>
+  </sql>
+
+  <select id="getAll" parameterType="com.spring.demo.model.authority.Menu" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tbl_menu
+    <where>
+      <include refid="Base_Where" />
+    </where>
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -46,9 +91,16 @@
     where id = #{id,jdbcType=VARCHAR}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     delete from tbl_menu
     where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="delete" parameterType="com.spring.demo.model.authority.Menu">
+    delete from tbl_menu
+    <where>
+      <include refid="Base_Where" />
+    </where>
   </delete>
 
   <insert id="insert" parameterType="com.spring.demo.model.authority.Menu">
@@ -65,7 +117,7 @@
       #{pid,jdbcType=VARCHAR},
       #{seq,jdbcType=INTEGER},
       #{status,jdbcType=INTEGER},
-      #{isleaf,jdbcType=INTEGER},
+      #{isLeaf,jdbcType=INTEGER},
       #{creator,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=VARCHAR},
@@ -98,7 +150,7 @@
       <if test="status != null">
         status,
       </if>
-      <if test="isleaf != null">
+      <if test="isLeaf != null">
         isLeaf,
       </if>
       <if test="creator != null">
@@ -139,8 +191,8 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="isleaf != null">
-        #{isleaf,jdbcType=INTEGER},
+      <if test="isLeaf != null">
+        #{isLeaf,jdbcType=INTEGER},
       </if>
       <if test="creator != null">
         #{creator,jdbcType=VARCHAR},
@@ -160,16 +212,16 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.spring.demo.model.authority.Menu">
+  <update id="updateById" parameterType="com.spring.demo.model.authority.Menu">
     update tbl_menu
     <set>
-      <if test="name != null">
+      <if test="name != null and name != ''">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="sn != null">
+      <if test="sn != null and sn != ''">
         sn = #{sn,jdbcType=VARCHAR},
       </if>
-      <if test="url != null">
+      <if test="url != null and url != ''">
         url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="pid != null">
@@ -181,19 +233,19 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="isleaf != null">
-        isLeaf = #{isleaf,jdbcType=INTEGER},
+      <if test="isLeaf != null and isLeaf != ''">
+        isLeaf = #{isLeaf,jdbcType=INTEGER},
       </if>
-      <if test="creator != null">
+      <if test="creator != null and creator != ''">
         creator = #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null and createTime != ''">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updator != null">
+      <if test="updator != null and updator != ''">
         updator = #{updator,jdbcType=VARCHAR},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null and updateTime != ''">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="delFlag != null">
@@ -203,21 +255,4 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.spring.demo.model.authority.Menu">
-    update tbl_menu
-    set name =
-      #{name,jdbcType=VARCHAR},
-      sn = #{sn,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=VARCHAR},
-      seq = #{seq,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      isLeaf = #{isleaf,jdbcType=INTEGER},
-      creator = #{creator,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      updator = #{updator,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=INTEGER}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

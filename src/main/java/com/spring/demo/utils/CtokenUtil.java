@@ -76,6 +76,8 @@ public class CtokenUtil {
          * 将Ctoken写入客户端Cookie.
          */
         Cookie cookie = new Cookie(CTOKEN_COOKIE_NAME, ctoken);
+        cookie.setPath("/");
+//        cookie.setMaxAge(3600);  // 单位秒
         response.addCookie(cookie);
 
         response.setHeader(CTOKEN_HEADER_NAME, ctoken);

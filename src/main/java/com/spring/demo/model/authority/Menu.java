@@ -43,7 +43,7 @@ public class Menu implements Serializable {
     /**
      * 叶子（0：不是叶子，1：叶子）
      */
-    private Integer isleaf;
+    private Integer isLeaf;
 
     /**
      * 创建人
@@ -126,12 +126,12 @@ public class Menu implements Serializable {
         this.status = status;
     }
 
-    public Integer getIsleaf() {
-        return isleaf;
+    public Integer getIsLeaf() {
+        return isLeaf;
     }
 
-    public void setIsleaf(Integer isleaf) {
-        this.isleaf = isleaf;
+    public void setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
     }
 
     public String getCreator() {
@@ -173,4 +173,24 @@ public class Menu implements Serializable {
     public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sn='" + sn + '\'' +
+                ", url='" + url + '\'' +
+                ", pid='" + pid + '\'' +
+                ", seq=" + seq +
+                ", status=" + status +
+                ", isLeaf=" + isLeaf +
+                ", creator='" + creator + '\'' +
+                ", createTime=" + createTime +
+                ", updator='" + updator + '\'' +
+                ", updateTime=" + updateTime +
+                ", delFlag=" + delFlag +
+                '}';
+    }
+
 }

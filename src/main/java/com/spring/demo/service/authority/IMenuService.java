@@ -12,7 +12,9 @@ public interface IMenuService {
 
     /**
      * 根据用户来查询菜单
+     * @param user 登录用户
      * @return
+     * @throws Exception
      */
     List<Menu> getAllByUser(User user) throws Exception;
 
@@ -21,5 +23,19 @@ public interface IMenuService {
      * @return
      * @throws Exception
      */
-    List<Menu> getAll() throws Exception;
+    List<Menu> getAll(Menu menu) throws Exception;
+
+    /**
+     * 添加菜单
+     * @param menu
+     * @throws Exception
+     */
+    void add(Menu menu, User user) throws Exception;
+
+    /**
+     * 删除菜单
+     * @param menu
+     * @throws Exception
+     */
+    void del(Menu menu) throws Exception;
 }

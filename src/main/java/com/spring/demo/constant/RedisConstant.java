@@ -6,8 +6,10 @@ package com.spring.demo.constant;
  *
  */
 public enum RedisConstant {
-    /**Ctoken模块，保存Coken和UID的映射关系*/
+    // Ctoken模块，保存Coken和UID的映射关系
     CTOKEN,
-    /**SESSION模块，保存Coken和Session的映射关系*/
+    // SESSION模块，保存Coken和Session的映射关系
     SESSION,
+    // 菜单-后台管理模块
+    MENU,
 }

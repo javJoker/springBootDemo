@@ -1,9 +1,12 @@
 package com.spring.demo.service.user.impl;
 
 import com.spring.demo.dao.user.IUserDao;
+import com.spring.demo.exception.DemoException;
 import com.spring.demo.model.user.User;
 import com.spring.demo.service.user.IUserService;
+import com.spring.demo.utils.LogUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
 
+    private Logger LOG =  Logger.getLogger( UserServiceImpl.class);
+
     @Autowired
     private IUserDao userDao;
 
@@ -27,7 +32,16 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public User getUserById(String id) throws Exception {
-        return userDao.getUserById(id);
+        User user = null;
+        try {
+            if ( StringUtils.isNotBlank( id ) ){
+                user = userDao.getUserById( id );
+            }
+        } catch (Exception e) {
+            LogUtil.error(LOG, e, "用户查询失败");
+            throw new DemoException( "用户查询失败" );
+        }
+        return user;
     }
 
 
@@ -39,7 +53,16 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public User getUserByUserNo(String userNo) throws Exception {
-        return StringUtils.isBlank(userNo) ? null : userDao.getUserByUserNo(userNo);
+        User user = null;
+        try {
+            if ( StringUtils.isNotBlank( userNo ) ){
+                user = userDao.getUserByUserNo( userNo );
+            }
+        } catch (Exception e) {
+            LogUtil.error(LOG, e, "用户查询失败");
+            throw new DemoException( "用户查询失败" );
+        }
+        return user;
     }
 
     /**
