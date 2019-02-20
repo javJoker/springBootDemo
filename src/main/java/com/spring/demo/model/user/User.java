@@ -2,7 +2,9 @@ package com.spring.demo.model.user;
 
 import com.spring.demo.model.common.BaseModel;
 
-public class User extends BaseModel {
+import java.io.Serializable;
+
+public class User extends BaseModel implements Serializable {
 
     /**
      * 用户ID

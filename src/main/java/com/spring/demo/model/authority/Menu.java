@@ -1,10 +1,11 @@
 package com.spring.demo.model.authority;
 
+import com.spring.demo.model.common.BaseModel;
+
 import java.io.Serializable;
-import java.util.Date;
 
 
-public class Menu implements Serializable {
+public class Menu extends BaseModel implements Serializable {
     /**
      * ID
      */
@@ -45,30 +46,6 @@ public class Menu implements Serializable {
      */
     private Integer isLeaf;
 
-    /**
-     * 创建人
-     */
-    private String creator;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新人
-     */
-    private String updator;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-
-    /**
-     * 删除标记（0：删除，1：未删除）
-     */
-    private Integer delFlag;
 
     public String getId() {
         return id;
@@ -134,46 +111,6 @@ public class Menu implements Serializable {
         this.isLeaf = isLeaf;
     }
 
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator == null ? null : creator.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdator() {
-        return updator;
-    }
-
-    public void setUpdator(String updator) {
-        this.updator = updator == null ? null : updator.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Integer delFlag) {
-        this.delFlag = delFlag;
-    }
-
     @Override
     public String toString() {
         return "Menu{" +
@@ -185,11 +122,11 @@ public class Menu implements Serializable {
                 ", seq=" + seq +
                 ", status=" + status +
                 ", isLeaf=" + isLeaf +
-                ", creator='" + creator + '\'' +
-                ", createTime=" + createTime +
-                ", updator='" + updator + '\'' +
-                ", updateTime=" + updateTime +
-                ", delFlag=" + delFlag +
+                ", creator='" + super.getCreator() + '\'' +
+                ", createTime=" + super.getCreateTime() +
+                ", updator='" + super.getUpdator() + '\'' +
+                ", updateTime=" + super.getUpdateTime() +
+                ", delFlag=" + super.getDelFlag() +
                 '}';
     }
 
